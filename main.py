@@ -1,3 +1,4 @@
+from os import posix_fadvise
 import requests #https://requests.readthedocs.io/en/latest/
 import selenium #https://selenium-python.readthedocs.io/installation.html
 from bs4 import BeautifulSoup #https://www.crummy.com/software/BeautifulSoup/bs4/doc/
@@ -18,9 +19,9 @@ def login(browser):
     Log_In.click()
     print("d")
     Username = browser.find_element(By.XPATH,'/html/body/div[2]/div/div[3]/div[1]/div[2]/div/div/div/form/fieldset[1]/label/input') #https://selenium-python.readthedocs.io/locating-elements.html
-    Username.send_keys('pixiv username/email') #input username
+    Username.send_keys('email/username') #input username
     Password = browser.find_element(By.XPATH, '/html/body/div[2]/div/div[3]/div[1]/div[2]/div/div/div/form/fieldset[2]/label/input')
-    Password.send_keys('pixiv password') #input password
+    Password.send_keys('password') #input password
     Login = browser.find_element(By.XPATH, '/html/body/div[2]/div/div[3]/div[1]/div[2]/div/div/div/form/button')
     print("e")
     Login.click()
@@ -42,13 +43,16 @@ def search(tags, browser):
     Illustrations_only = browser.find_element(By.CSS_SELECTOR, ".sc-1mycqam-1.hIfEPv")
     Illustrations_only.click()
 
+#sc-rp5asc-10 eCFXg = id of all images on pixiv
+#https://www.tutorialspoint.com/download-image-with-selenium-python
+
 
 def main():
     tags = input("Enter tags: ")
     tags = str(tags)
     print(tags)
     url = "https://www.pixiv.net/"
-    service = Service(r'Path to geckodriver') #path to geckodriver.exe
+    service = Service(r'PATH') #path to geckodriver.exe
     options = webdriver.FirefoxOptions()
     options.add_argument('--disable-blink-features=AutomationControlled')
     browser = webdriver.Firefox(service=service, options=options)

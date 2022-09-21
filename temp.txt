@@ -25,3 +25,5 @@ add if r18 or not
 add sort by author
 add how many images to get
 add dl from ranked pages by day, week, month
+allow launch from docker
+allow connect to tinypin
