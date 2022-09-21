@@ -1,2 +1,2 @@
-# scrapy-mongodb
-Scrape website with Scrapy and MongoDB
+# beautifulsoup4 + requests
+Scrape website with beautifulsoup4 + requests
