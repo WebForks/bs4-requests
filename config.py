@@ -1,0 +1,5 @@
+settings = {
+    "user": "",
+    "password": "",
+    "PATH": "",
+}

@@ -1,4 +1,4 @@
-from os import posix_fadvise
+import config
 import requests #https://requests.readthedocs.io/en/latest/
 import selenium #https://selenium-python.readthedocs.io/installation.html
 from bs4 import BeautifulSoup #https://www.crummy.com/software/BeautifulSoup/bs4/doc/
@@ -19,9 +19,9 @@ def login(browser):
     Log_In.click()
     print("d")
     Username = browser.find_element(By.XPATH,'/html/body/div[2]/div/div[3]/div[1]/div[2]/div/div/div/form/fieldset[1]/label/input') #https://selenium-python.readthedocs.io/locating-elements.html
-    Username.send_keys('email/username') #input username
+    Username.send_keys(config.settings["user"]) #input username
     Password = browser.find_element(By.XPATH, '/html/body/div[2]/div/div[3]/div[1]/div[2]/div/div/div/form/fieldset[2]/label/input')
-    Password.send_keys('password') #input password
+    Password.send_keys(config.settings["password"]) #input password
     Login = browser.find_element(By.XPATH, '/html/body/div[2]/div/div[3]/div[1]/div[2]/div/div/div/form/button')
     print("e")
     Login.click()
@@ -48,11 +48,11 @@ def search(tags, browser):
 
 
 def main():
-    tags = input("Enter tags: ")
+    tags = input("Enter the tags: ")
     tags = str(tags)
     print(tags)
     url = "https://www.pixiv.net/"
-    service = Service(r'PATH') #path to geckodriver.exe
+    service = Service(config.settings["PATH"]) #path to geckodriver.exe
     options = webdriver.FirefoxOptions()
     options.add_argument('--disable-blink-features=AutomationControlled')
     browser = webdriver.Firefox(service=service, options=options)
